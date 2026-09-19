@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Skybound: Echoes of the Floating Isles</title>
+    <link rel="stylesheet" href="/css/ui.css">
+</head>
+<body>
+    <!-- Game Canvas -->
+    <canvas id="gameCanvas"></canvas>
+    
+    <!-- Loading Screen -->
+    <div id="loadingScreen" class="screen active">
+        <div class="loading-content">
+            <h1>Skybound</h1>
+            <p>Echoes of the Floating Isles</p>
+            <div class="loading-bar">
+                <div class="loading-progress" id="loadingProgress"></div>
+            </div>
+            <p id="loadingText">Loading...</p>
+        </div>
+    </div>
+    
+    <!-- Main UI Overlay -->
+    <div id="gameUI" class="ui-overlay hidden">
+        <!-- Top Bar -->
+        <div class="top-bar">
+            <div class="quest-info">
+                <h3 id="questTitle">Echoes Beneath the Sky</h3>
+                <p id="questObjective">Talk to Elder Mira</p>
+            </div>
+            <div class="mini-map-container">
+                <canvas id="miniMap" width="150" height="150"></canvas>
+            </div>
+        </div>
+        
+        <!-- Left Side - Character Info -->
+        <div class="character-panel">
+            <div class="char-portrait" id="currentCharPortrait">
+                <img src="" alt="Character" id="charPortraitImg">
+            </div>
+            <div class="char-stats">
+                <div class="health-bar-container">
+                    <div class="health-bar" id="healthBar"></div>
+                    <span class="health-text" id="healthText">100/100</span>
+                </div>
+                <div class="stamina-bar-container">
+                    <div class="stamina-bar" id="staminaBar"></div>
+                </div>
+                <div class="ultimate-bar-container">
+                    <div class="ultimate-bar" id="ultimateBar"></div>
+                    <span class="ultimate-text" id="ultimateText">ULTIMATE</span>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Right Side - Enemy Info -->
+        <div class="enemy-panel hidden" id="enemyPanel">
+            <div class="enemy-health-bar-container">
+                <span class="enemy-name" id="enemyName">Enemy</span>
+                <div class="enemy-health-bar">
+                    <div class="enemy-health-fill" id="enemyHealthBar"></div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Bottom - Character Switcher -->
+        <div class="character-switcher">
+            <div class="char-slot active" data-char="0" id="charSlot0">
+                <div class="char-icon" id="charIcon0"></div>
+                <div class="char-key">1</div>
+            </div>
+            <div class="char-slot" data-char="1" id="charSlot1">
+                <div class="char-icon" id="charIcon1"></div>
+                <div class="char-key">2</div>
+            </div>
+            <div class="char-slot" data-char="2" id="charSlot2">
+                <div class="char-icon" id="charIcon2"></div>
+                <div class="char-key">3</div>
+            </div>
+            <div class="char-slot" data-char="3" id="charSlot3">
+                <div class="char-icon" id="charIcon3"></div>
+                <div class="char-key">4</div>
+            </div>
+        </div>
+        
+        <!-- Ability Cooldowns -->
+        <div class="ability-cooldowns">
+            <div class="cooldown-item">
+                <div class="ability-key">E</div>
+                <div class="cooldown-ring" id="skillCooldown">
+                    <span class="cd-text" id="skillCDText"></span>
+                </div>
+            </div>
+            <div class="cooldown-item">
+                <div class="ability-key">Q</div>
+                <div class="cooldown-ring ultimate" id="ultimateCooldown">
+                    <span class="cd-text" id="ultimateCDText"></span>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Interaction Prompt -->
+        <div class="interaction-prompt hidden" id="interactionPrompt">
+            <span class="interact-key">E</span>
+            <span class="interact-text" id="interactText">Interact</span>
+        </div>
+        
+        <!-- Damage Numbers Container -->
+        <div id="damageNumbers"></div>
+    </div>
+    
+    <!-- Pause Menu -->
+    <div id="pauseMenu" class="screen hidden">
+        <div class="menu-content">
+            <h2>Paused</h2>
+            <button class="menu-btn" id="resumeBtn">Resume</button>
+            <button class="menu-btn" id="saveBtn">Save Game</button>
+            <button class="menu-btn" id="loadBtn">Load Game</button>
+            <button class="menu-btn" id="inventoryBtn">Inventory</button>
+            <button class="menu-btn" id="settingsBtn">Settings</button>
+        </div>
+    </div>
+    
+    <!-- Inventory Screen -->
+    <div id="inventoryScreen" class="screen hidden">
+        <div class="inventory-content">
+            <h2>Inventory</h2>
+            <div class="inventory-grid" id="inventoryGrid"></div>
+            <button class="menu-btn close-btn" id="closeInventoryBtn">Close</button>
+        </div>
+    </div>
+    
+    <!-- Death Screen -->
+    <div id="deathScreen" class="screen hidden">
+        <div class="death-content">
+            <h2>Defeated</h2>
+            <button class="menu-btn" id="respawnBtn">Respawn</button>
+        </div>
+    </div>
+    
+    <!-- Victory Screen -->
+    <div id="victoryScreen" class="screen hidden">
+        <div class="victory-content">
+            <h2>Victory!</h2>
+            <p id="victoryMessage">You have defeated the boss!</p>
+            <button class="menu-btn" id="continueBtn">Continue</button>
+        </div>
+    </div>
+    
+    <!-- Quest Complete Notification -->
+    <div id="questComplete" class="notification hidden">
+        <h3>Quest Complete!</h3>
+        <p id="questCompleteText"></p>
+    </div>
+    
+    <script type="module" src="/src/main.js"></script>
+</body>
+</html>
